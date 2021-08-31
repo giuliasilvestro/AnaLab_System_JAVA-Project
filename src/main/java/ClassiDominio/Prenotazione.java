@@ -15,11 +15,13 @@ public class Prenotazione {
     private Paziente paziente;
     private double prezzo;
     private List<Test> listaTest;
+    private List<Esito> esiti;
  
     public Prenotazione(Paziente paziente, String data){
         this.paziente = paziente;
         this.data = data;
         this.listaTest = new ArrayList<>();
+        this.esiti = new ArrayList<>();
     }
     
     public void addTest(Test test){
@@ -66,6 +68,9 @@ public class Prenotazione {
         this.prezzo = prezzo;
     }
     
+    public void addEsito(Esito esito){
+        esiti.add(esito);
+    }
     
     @Override
     public String toString() {
@@ -91,4 +96,20 @@ public class Prenotazione {
         return str;
   }
     
+    public String esitoToString() {
+        String str ="PRENOTAZIONE: "+this.toString()+"\n"+"\n"+"ESITI DISPONIBILI: "+"\n";
+        for(Esito esito: esiti){
+            
+            String stringa = " ";
+            if(esito.getEsito()> esito.getTest().getValMax()){
+                stringa = esito.getTest().getMsgValMax();
+            } else if(esito.getEsito() < esito.getTest().getValMin()){
+                stringa = esito.getTest().getMsgValMin();
+            }
+            
+            str = str + "Test: "+esito.getTest().getNome()+" | valore: "+esito.getEsito()+" |  Valori di riferimento: "+esito.getTest().getValMin()+" - "+esito.getTest().getValMax()+" | "+stringa+"\n";
+        }
+        return str;
+    }
     
+}

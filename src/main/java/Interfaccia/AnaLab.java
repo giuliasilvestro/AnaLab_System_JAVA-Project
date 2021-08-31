@@ -169,7 +169,7 @@ public class AnaLab {
                         scelta = menuMain(MTecnico);
                         switch (scelta){
                             case 1: { // TECH: Aggiorna Esito
-                                
+                                aggiornaEsito();
                                 break;
                             }
                         }
@@ -181,7 +181,7 @@ public class AnaLab {
                         scelta = menuMain(MPaziente);
                         switch (scelta){
                             case 1: { // PAZ: Visualizza Esito
-                                
+                                visualizzaEsito();
                                 break;
                             }            
                         }
@@ -396,9 +396,36 @@ public class AnaLab {
             System.out.println("----------------------------------------");
         }
         
-       
+        public void aggiornaEsito(){
+            System.out.println("Inserisci il codice fiscale del paziente: ");
+            String codiceFiscale = Input.leggiStringa();
+            System.out.println("Inserisci data prenotazione (dd/mm/yyyy): ");
+            String data = Input.leggiStringa();
+            keyPrenotazione key = new keyPrenotazione(codiceFiscale, data);
+
+            prenotazioni.get(key);
+            if(prenotazioni.get(key) == null){
+                System.out.println("Prenotazione non trovata");
+            }else {
+              System.out.println("Prenotazione trovata, digita il codice del test di cui vuoi aggiornare l'esito: ");
+              System.out.println(prenotazioni.get(key).testToString());
+              String codiceTest = Input.leggiStringa();
+              System.out.println("Inserisci l'esito numerico del test");
+              Double risultato = Input.leggiDouble();
+              Esito esito = new Esito((TestSingolo)catalogo.getTest(codiceTest), risultato);
+              prenotazioni.get(key).addEsito(esito);       
+            }
+        }
         
-        
+        public void visualizzaEsito(){
+            System.out.println("Inserisci il tuo codice fiscale: ");
+            String codiceFiscale = Input.leggiStringa();
+            System.out.println("Inserisci data prenotazione (dd/mm/yyyy): ");
+            String data = Input.leggiStringa();
+            keyPrenotazione key = new keyPrenotazione(codiceFiscale, data);
+            System.out.println("---------------------------------------------");
+            System.out.println(prenotazioni.get(key).esitoToString());
+        }
                                 
 }
 

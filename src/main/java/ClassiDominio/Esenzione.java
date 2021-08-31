@@ -13,7 +13,7 @@ import java.util.*;
 public class Esenzione {
     private String codice;
     private double percentualeDetrarre;
-    List<Test> listaTest;
+    public List<Test> listaTest;
     
      public Esenzione(String codice, double percentualeDetrarre){
         this.codice = codice;
@@ -28,6 +28,10 @@ public class Esenzione {
     public String getCode(){
         return codice;
     };
+    
+    public double getDiscount(){
+        return percentualeDetrarre;
+    }
     
     @Override
     public String toString() {

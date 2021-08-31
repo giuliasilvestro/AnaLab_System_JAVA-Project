@@ -14,17 +14,19 @@ public class Paziente {
     private String codiceFiscale; //non scriviamo il costruttore perchè l'attributo è public e viene inizializzato nei costruttori delle sottoclassi
     private String nomeCognome;
     private String dataNascita;
-    List<Esenzione> listaEsenzioni;
-    List<Prenotazione> listaPrenotazioni;
+    List<Esenzione> listaEsenzioni = new ArrayList<>();
     
     public Paziente(String codiceFiscale, String nomeCognome, String dataNascita){
        this.codiceFiscale = codiceFiscale;
        this.nomeCognome = nomeCognome;
        this.dataNascita = dataNascita;
-       this.listaEsenzioni = new ArrayList<>();
+       //this.listaEsenzioni = new ArrayList<>();
     }
     
-      
+    public String getCodiceFiscale(){
+        return this.codiceFiscale;
+    } 
+    
     public void addEsenzione(Esenzione esenzione){
         listaEsenzioni.add(esenzione);
     }

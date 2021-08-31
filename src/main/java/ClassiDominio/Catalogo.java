@@ -38,6 +38,4 @@ public class Catalogo {
     public void printCatalogoEsenzioni(){
         this.catalogoEsenzioni.forEach((key, value) -> System.out.println(key + ": " + value.toString()));
     }    
-    
-    
 }

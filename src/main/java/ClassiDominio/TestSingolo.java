@@ -30,6 +30,22 @@ public class TestSingolo extends Test {
         return prezzo;
     } 
     
+    public double getValMax(){
+        return valMax;
+    } 
+    
+    public double getValMin(){
+        return valMin;
+    } 
+    
+    public String getMsgValMax(){
+        return msgValMax;
+    } 
+    
+    public String getMsgValMin(){
+        return msgValMin;
+    } 
+    
     @Override
     public String toString() {
         String str = "Nome: "+nome+" | Prezzo: "+prezzo+"€, ValMax: "+valMax+", ValMin: "+valMin;

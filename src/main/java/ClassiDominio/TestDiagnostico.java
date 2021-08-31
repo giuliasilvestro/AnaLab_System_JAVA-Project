@@ -19,7 +19,7 @@ public class TestDiagnostico extends Test {
         this.listaTest = new ArrayList<>();
     }
     
-    public void add(Test test){
+    public void addTest(Test test){
         listaTest.add(test);
         this.getPrezzo();
     }
@@ -36,7 +36,7 @@ public class TestDiagnostico extends Test {
     
     @Override
     public String toString() {
-        String str ="Prezzo: "+this.prezzo+"€, Esami previsti: ";
+        String str ="Nome: "+nome+", Prezzo: "+this.prezzo+"€, Esami previsti: ";
         for(Test test: listaTest){
             str = str + test.getNome()+", ";
         }

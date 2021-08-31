@@ -10,11 +10,23 @@ import java.util.*;
  * @author giuliasilvestro
  */
 public class Data {
-    Date data;
+    String data;
     int counter;
 
-    public Data(Date data){
+    public Data(String data){
         this.data = data;
         this.counter = 1;
+    }
+    
+    public String getData(){
+        return this.data;
+    }
+    
+    public int getCounter(){
+        return this.counter;
+    }
+    
+    public void incrCounter(){
+        this.counter++;
     }
 }

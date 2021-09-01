@@ -12,7 +12,9 @@ import java.util.*;
 public class Data {
     String data;
     int counter;
-
+    
+    public Data(){}
+    
     public Data(String data){
         this.data = data;
         this.counter = 1;

@@ -15,7 +15,7 @@ public class Paziente {
     private String nomeCognome;
     private String dataNascita;
     List<Esenzione> listaEsenzioni = new ArrayList<>();
-    
+    public Paziente(){}
     public Paziente(String codiceFiscale, String nomeCognome, String dataNascita){
        this.codiceFiscale = codiceFiscale;
        this.nomeCognome = nomeCognome;

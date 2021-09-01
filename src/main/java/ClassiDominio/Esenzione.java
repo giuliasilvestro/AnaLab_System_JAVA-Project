@@ -35,7 +35,7 @@ public class Esenzione {
     
     @Override
     public String toString() {
-        String str = "Percentuale da detrarre: "+percentualeDetrarre+"%, Esami idonei: ";
+        String str = "Codice: "+this.codice+", Percentuale da detrarre: "+this.percentualeDetrarre+"%, Esami idonei: ";
         for(Test test: listaTest){
             str = str + test.getNome()+", ";
         }

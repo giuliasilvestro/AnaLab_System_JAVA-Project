@@ -20,15 +20,18 @@ public class TestDiagnostico extends Test {
     }
     
     public void addTest(Test test){
+        
         listaTest.add(test);
-        this.getPrezzo();
+        this.calcPrezzo();
+        
+        
     }
     
     @Override
-    public double getPrezzo(){
+    public double calcPrezzo(){
         double prezzo = 0;
         for(Test test: listaTest){
-            prezzo = prezzo + test.getPrezzo();
+            prezzo = prezzo + test.calcPrezzo();
         }
         this.prezzo = prezzo;
         return prezzo;

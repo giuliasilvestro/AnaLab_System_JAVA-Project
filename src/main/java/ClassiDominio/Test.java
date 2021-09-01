@@ -10,12 +10,12 @@ import java.util.*;
  *
  * @author giuliasilvestro
  */
-abstract class Test {
+public abstract class Test {
     public String codiceSSN; //non scriviamo il costruttore perchè l'attributo è public e viene inizializzato nei costruttori delle sottoclassi
     public String nome;
     public double prezzo;
     
-    abstract double getPrezzo();
+    abstract double calcPrezzo();
     public String getCode(){
         return codiceSSN;
     };

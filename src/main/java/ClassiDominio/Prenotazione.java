@@ -11,13 +11,14 @@ import java.util.*;
  * @author giuliasilvestro
  */
 public class Prenotazione {
-    private String data;
+    private Data data;
     private Paziente paziente;
     private double prezzo;
     private List<Test> listaTest;
     private List<Esito> esiti;
  
-    public Prenotazione(Paziente paziente, String data){
+    public Prenotazione(){}
+    public Prenotazione(Paziente paziente, Data data){
         this.paziente = paziente;
         this.data = data;
         this.listaTest = new ArrayList<>();
@@ -26,43 +27,32 @@ public class Prenotazione {
     
     public void addTest(Test test){
         listaTest.add(test);
+        setPrezzo();
     }
     
-    public String getDate(){
+    public Data getDate(){
         return this.data;
     }
     
+    public Paziente getPaziente(){
+        return paziente;
+    }
+    
     public void setPrezzo(){
-        System.out.println("PREZZO");
         double prezzo = 0;
         for(Test test: this.listaTest){
             int found = 0;
-            System.out.println("punto 1");
-            if(this.paziente.getCodiceFiscale().equals("ciao")){
-                System.out.println("almeno il paziente esiste");
-            }
-            if (this.paziente.listaEsenzioni !=null && !this.paziente.listaEsenzioni.isEmpty()) {
-                System.out.println("non sono vuoto");
-            }
-            
-            //System.out.println(this.paziente.listaEsenzioni.toString());
             for(Esenzione esenzione: this.paziente.listaEsenzioni){
-                System.out.println("punto 2");
-                System.out.println(esenzione.toString());
                 for(Test esenTest: esenzione.listaTest){
-                    System.out.println("punto 3");
-                    System.out.println(test.getCode());
-                    System.out.println(esenTest.getCode());
                     if(esenTest.getCode().equals(test.getCode())){
-                        System.out.println("punto 4");
-                        prezzo = prezzo + (test.getPrezzo() - (0.01*esenzione.getDiscount()*test.getPrezzo()));
+                        prezzo = prezzo + (test.calcPrezzo() - (0.01*esenzione.getDiscount()*test.calcPrezzo()));
                         found = 1;
                         continue;
                     }
                 }
             }
             if(found == 0){ 
-                prezzo = prezzo + test.getPrezzo();
+                prezzo = prezzo + test.calcPrezzo();
             }
         }
         this.prezzo = prezzo;
@@ -74,9 +64,9 @@ public class Prenotazione {
     
     @Override
     public String toString() {
-        String str ="DATA: "+this.data.toString()+"\n"+"PAZIENTE: "+this.paziente.toString()+"\n"+"PREZZO FINALE CON ESENZIONI: "+this.prezzo+"\n"+"LISTA TEST PRENOTATI: ";
+        String str ="DATA: "+this.data.getData()+"\n"+"PAZIENTE: "+this.paziente.toString()+"\n"+"PREZZO FINALE CON ESENZIONI: "+this.prezzo+"\n"+"LISTA TEST PRENOTATI: ";
         for(Test test: listaTest){
-            str = str + test.getNome()+", prezzo: "+test.getPrezzo()+" | ";
+            str = str + test.getNome()+", prezzo: "+test.calcPrezzo()+" | ";
         }
         return str;
     }

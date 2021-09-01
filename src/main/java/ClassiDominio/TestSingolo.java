@@ -26,7 +26,7 @@ public class TestSingolo extends Test {
      this.msgValMin = msgValMin;
     }
     @Override
-    public double getPrezzo(){
+    public double calcPrezzo(){
         return prezzo;
     } 
     

@@ -184,7 +184,7 @@ public class AnaLab {
                         scelta = menu(MSegretario);
                         switch (scelta){
                             case 1: {// SEG: Registra Prenotazione
-                                
+                                Prenotazione prenotazioneCorrente = anaLabSystem.nuovaPrenotazione();
                                 int flag = 0;
                                 String codiceFiscale;
                                 String data;
@@ -218,7 +218,9 @@ public class AnaLab {
                                          
                                      }
                                 }while(!codEs.equals("0"));
-
+                                
+                                anaLabSystem.associaPazientePrenotazione(paziente, prenotazioneCorrente);
+                                
                                // Verifica se la data è disponibile, scegliere una data disponibile.
                                Data d = new Data(); 
                                flag = 0;
@@ -242,8 +244,7 @@ public class AnaLab {
                                     }
                                 }while(flag!=1);
                                 
-                                // Crea oggetto prenotazione con data e paziente.
-                                Prenotazione prenotazioneCorrente = anaLabSystem.nuovaPrenotazione(paziente, d);
+                                anaLabSystem.associaDataPrenotazione(d, prenotazioneCorrente);
                                 String code;
 
                                 do{

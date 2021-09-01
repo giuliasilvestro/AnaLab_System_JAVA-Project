@@ -272,9 +272,18 @@ public class AnaLabSystem {
             calendario.get(data.getData()).incrCounter();
         }        
         
-        public Prenotazione nuovaPrenotazione(Paziente paziente, Data data){
-            Prenotazione prenotazione = new Prenotazione(paziente, data);
+        public Prenotazione nuovaPrenotazione(){
+            Prenotazione prenotazione = new Prenotazione();
             return prenotazione;
+        }
+        
+        public void associaPazientePrenotazione(Paziente p, Prenotazione prenotazione){
+             prenotazione.addPaziente(p);
+        }
+        
+        public void associaDataPrenotazione(Data d,  Prenotazione prenotazione){
+            prenotazione.addData(d);
+            
         }
         
         public void aggiungiTestPrenotazione(Prenotazione prenotazione, String code){
@@ -309,22 +318,7 @@ public class AnaLabSystem {
             prenotazione.addEsito(esito); 
         }
         
-   /*     
-      
-        
-
-
-        
-        public void visualizzaEsito(){
-            System.out.println("Inserisci il tuo codice fiscale: ");
-            String codiceFiscale = Input.leggiStringa();
-            System.out.println("Inserisci data prenotazione (dd/mm/yyyy): ");
-            String data = Input.leggiStringa();
-            keyPrenotazione key = new keyPrenotazione(codiceFiscale, data);
-            System.out.println("---------------------------------------------");
-            System.out.println(prenotazioni.get(key).esitoToString());
-        }
-      */
+        // Metodi funzionali
         public void printListaPazienti(){
         this.pazienti.forEach((key, value) -> System.out.println(key + ": " + value.toString()));
     }   

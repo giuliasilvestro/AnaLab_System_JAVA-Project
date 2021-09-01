@@ -17,12 +17,23 @@ public class Prenotazione {
     private List<Test> listaTest;
     private List<Esito> esiti;
  
-    public Prenotazione(){}
+    public Prenotazione(){
+            this.listaTest = new ArrayList<>();
+            this.esiti = new ArrayList<>();
+    }
     public Prenotazione(Paziente paziente, Data data){
         this.paziente = paziente;
         this.data = data;
         this.listaTest = new ArrayList<>();
         this.esiti = new ArrayList<>();
+    }
+    
+    public void addPaziente(Paziente p){
+        this.paziente = p;
+    }
+    
+    public void addData(Data d){
+        this.data = d;
     }
     
     public void addTest(Test test){

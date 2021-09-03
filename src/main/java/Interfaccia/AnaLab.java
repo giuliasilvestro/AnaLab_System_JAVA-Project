@@ -24,8 +24,9 @@ public class AnaLab {
     }    
 
     public static void main(String[] args) {
-        // Crea istanza di anaLabSystem
-        AnaLabSystem anaLabSystem = new AnaLabSystem();
+        // Crea istanza di anaLabSystem e inizializzala con i dati di avviamento
+        AnaLabSystem anaLabSystem = AnaLabSystem.getAnaLabSystem();
+        Startup startup = new Startup(anaLabSystem);
         
          String MMain [] = {
             "-----------------------------",
@@ -207,7 +208,10 @@ public class AnaLab {
                                             flag = 1;
                                         }
                                 }while(flag!=1);
-
+                                    
+                                
+                                anaLabSystem.associaPazientePrenotazione(paziente, prenotazioneCorrente);
+                                
                                 // Verifica se il paziente ha nuove esenzioni
                                 String codEs = "0";
                                 do{
@@ -219,7 +223,7 @@ public class AnaLab {
                                      }
                                 }while(!codEs.equals("0"));
                                 
-                                anaLabSystem.associaPazientePrenotazione(paziente, prenotazioneCorrente);
+                                
                                 
                                // Verifica se la data è disponibile, scegliere una data disponibile.
                                Data d = new Data(); 
@@ -237,7 +241,7 @@ public class AnaLab {
                                             System.out.println("Capienza massima di "+d.getCounter()+" raggiunta per il "+anaLabSystem.getData(d.getData())+", scegliere un'altra data.");
                                             flag = 0;
                                         } else{
-                                            anaLabSystem.incrementaCounterData(d);
+                                            
                                             flag = 1;
                                         }
                                         System.out.println("Counter per "+anaLabSystem.getData(d.getData())+" =  "+d.getCounter());
@@ -255,9 +259,7 @@ public class AnaLab {
                                             
                                         }     
                                     }while (!code.equals("0"));
-                                
-                                    // Determina prezzo con esenzioni
-                                    //prenotazioneCorrente.setPrezzo();
+
 
                                 System.out.println("********************");
                                 System.out.println("RIEPILOGO PRENOTAZIONE");

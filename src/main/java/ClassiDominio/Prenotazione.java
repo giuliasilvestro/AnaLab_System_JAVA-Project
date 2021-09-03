@@ -49,23 +49,31 @@ public class Prenotazione {
         return paziente;
     }
     
+    public List<Esito> getEsiti(){
+        return this.esiti;
+    }
+    public double getPrezzo(){
+        return prezzo;
+    }
     public void setPrezzo(){
         double prezzo = 0;
         for(Test test: this.listaTest){
+            double prezzoLower = test.calcPrezzo();
             int found = 0;
             for(Esenzione esenzione: this.paziente.listaEsenzioni){
                 for(Test esenTest: esenzione.listaTest){
+                    
                     if(esenTest.getCode().equals(test.getCode())){
-                        prezzo = prezzo + (test.calcPrezzo() - (0.01*esenzione.getDiscount()*test.calcPrezzo()));
-                        found = 1;
-                        continue;
+                        if(prezzoLower > test.calcPrezzo() - (0.01*esenzione.getDiscount()*test.calcPrezzo())){
+                            prezzoLower = test.calcPrezzo() - (0.01*esenzione.getDiscount()*test.calcPrezzo());
+                        }
                     }
                 }
             }
-            if(found == 0){ 
-                prezzo = prezzo + test.calcPrezzo();
+            prezzo = prezzo + prezzoLower;
+            found = 1;
             }
-        }
+        
         this.prezzo = prezzo;
     }
     

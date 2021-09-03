@@ -17,7 +17,7 @@ public class Data {
     
     public Data(String data){
         this.data = data;
-        this.counter = 1;
+        this.counter = 0;
     }
     
     public String getData(){
